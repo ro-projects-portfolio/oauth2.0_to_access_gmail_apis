@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "c0a0fdb6-7db0-4357-95cc-38e946794a63",
+		"name": "manual",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "31109395"
+	},
+	"item": [
+		{
+			"name": "AutorizeApp",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://accounts.google.com/o/oauth2/v2/auth?scope=https://mail.google.com/&access_type=offline&include_granted_scopes=true&response_type=code&state=state_parameter_passthrough_value&redirect_uri=https://localhost:8080&client_id=",
+					"protocol": "https",
+					"host": [
+						"accounts",
+						"google",
+						"com"
+					],
+					"path": [
+						"o",
+						"oauth2",
+						"v2",
+						"auth"
+					],
+					"query": [
+						{
+							"key": "scope",
+							"value": "https://mail.google.com/"
+						},
+						{
+							"key": "access_type",
+							"value": "offline"
+						},
+						{
+							"key": "include_granted_scopes",
+							"value": "true"
+						},
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "state",
+							"value": "state_parameter_passthrough_value"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://localhost:8080"
+						},
+						{
+							"key": "client_id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://localhost:8080",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://oauth2.googleapis.com/token"
+			},
+			"response": []
+		},
+		{
+			"name": "RenewToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://oauth2.googleapis.com/token?client_id=&client_secret=&grant_type=refresh_token&refresh_token=",
+					"protocol": "https",
+					"host": [
+						"oauth2",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"token"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": ""
+						},
+						{
+							"key": "client_secret",
+							"value": ""
+						},
+						{
+							"key": "grant_type",
+							"value": "refresh_token"
+						},
+						{
+							"key": "refresh_token",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SendMessage",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"raw\":\"RnJvbTogcWFhdXRvdGVzdGVuZ2luZWVyQGdtYWlsLmNvbQpUbzogcWFhdXRvdGVzdGVuZ2luZWVyQGdtYWlsLmNvbQpTdWJqZWN0OiBUZXN0RW1haWwKClNlbmQgZm9ybSBHbWFpbCBBUEk=\"\n}"
+				},
+				"url": "https://gmail.googleapis.com/gmail/v1/users/ -- your user_id (email what did you use when register app) -- /messages/send"
+			},
+			"response": []
+		}
+	]
+}
